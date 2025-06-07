@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categoría: Niños</title>
+    <!-- Incluye Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define una fuente bonita para el título */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif; /* Aplica la fuente Inter al cuerpo para el texto general */
+            background-color: #f8f8f8; /* Un fondo muy claro para un look limpio */
+            display: flex;
+            flex-direction: column; /* Organiza los elementos en columna */
+            align-items: center; /* Centra el contenido horizontalmente */
+            min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la ventana */
+            padding-top: 5rem; /* Espacio para la barra de navegación fija */
+        }
+        /* Estilo específico para el título 'PROJECT MOM' con la nueva tipografía itálica */
+        .title-font {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        /* Animación para toda la página al cargar */
+        body.fadeIn {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Animación para toda la página al salir (para enlaces) */
+        body.fadeOut {
+            animation: fadeOut 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* --- Estilos de la Modal de Producto (duplicados de index.html para consistencia) --- */
+        .product-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden; /* Oculto por defecto */
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s ease-in-out;
+        }
+
+        .product-modal-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .product-modal-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-width: 90%; /* Ajuste para móvil */
+            max-height: 90%; /* Ajuste para móvil */
+            overflow-y: auto; /* Para scroll si el contenido es muy largo */
+            transform: scale(0.9); /* Inicia un poco encogido */
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-modal-overlay.open .product-modal-content {
+            transform: scale(1); /* Se expande a tamaño normal */
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4a5568; /* gray-700 */
+            transition: color 0.2s;
+        }
+
+        .modal-close-button:hover {
+            color: #2d3748; /* gray-800 */
+        }
+
+        /* Responsive adjustments for modal content */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .product-modal-content {
+                flex-direction: row;
+                max-width: 700px; /* Ancho máximo en desktop */
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased fadeIn">
+    <nav class="w-full bg-white shadow-md p-4 flex justify-between items-center fixed top-0 z-50">
+        <!-- Título "PROJECT MOM" (ya no es un enlace) -->
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight tracking-tight">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 title-font">
+                PROJECT MOM
+            </span>
+        </h1>
+
+        <!-- Botón de volver al menú principal más minimalista -->
+        <a href="index.html" class="text-gray-600 hover:text-purple-600 font-semibold no-underline text-sm sm:text-base transition duration-300 transform hover:scale-105 px-2 py-1 rounded-md">
+            &larr; Volver al Menú
+        </a>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl mt-8">
+        <main class="text-gray-500 text-center">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
+                    Productos para Niños
+                </span>
+            </h2>
+
+            <p class="text-lg text-gray-700 mb-12">
+                ¡Explora nuestra adorable colección para los más pequeños del hogar!
+            </p>
+
+            <!-- Cuadrícula idéntica a "Más para Ti" de index.html -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+                <!-- Producto 1 para Niños -->
+                <div id="kidsProduct1" class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer no-underline text-gray-800 hover:shadow-md transition">
+                    <img src="https://placehold.co/200x250/FEE2E2/EF4444?text=Juguete+1" alt="Juguete 1" class="w-full h-auto rounded-md mb-2 object-cover">
+                    <h3 class="text-sm font-semibold">Juguete Educativo</h3>
+                </div>
+
+                <!-- Producto 2 para Niños -->
+                <div id="kidsProduct2" class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer no-underline text-gray-800 hover:shadow-md transition">
+                    <img src="https://placehold.co/200x250/DBEAFE/3B82F6?text=Ropa+Ni%C3%B1a" alt="Ropa Niña" class="w-full h-auto rounded-md mb-2 object-cover">
+                    <h3 class="text-sm font-semibold">Vestido de Verano</h3>
+                </div>
+
+                <!-- Producto 3 para Niños -->
+                <div id="kidsProduct3" class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer no-underline text-gray-800 hover:shadow-md transition">
+                    <img src="https://placehold.co/200x250/D1FAE5/10B981?text=Calzado+Ni%C3%B1o" alt="Calzado Niño" class="w-full h-auto rounded-md mb-2 object-cover">
+                    <h3 class="text-sm font-semibold">Zapatos Deportivos</h3>
+                </div>
+
+                <!-- Producto 4 para Niños -->
+                <div id="kidsProduct4" class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer no-underline text-gray-800 hover:shadow-md transition">
+                    <img src="https://placehold.co/200x250/F0F8FF/4682B4?text=Libro+Cuentos" alt="Libro de Cuentos" class="w-full h-auto rounded-md mb-2 object-cover">
+                    <h3 class="text-sm font-semibold">Libro de Cuentos</h3>
+                </div>
+
+                <!-- Producto 5 para Niños -->
+                <div id="kidsProduct5" class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer no-underline text-gray-800 hover:shadow-md transition">
+                    <img src="https://placehold.co/200x250/FFF0F5/FF69B4?text=Mochila+Escolar" alt="Mochila Escolar" class="w-full h-auto rounded-md mb-2 object-cover">
+                    <h3 class="text-sm font-semibold">Mochila Escolar</h3>
+                </div>
+
+                <!-- Producto 6 para Niños -->
+                <div id="kidsProduct6" class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer no-underline text-gray-800 hover:shadow-md transition">
+                    <img src="https://placehold.co/200x250/E0FFFF/00CED1?text=Set+Dibujo" alt="Set de Dibujo" class="w-full h-auto rounded-md mb-2 object-cover">
+                    <h3 class="text-sm font-semibold">Set de Dibujo Creativo</h3>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 sm:mt-16 text-gray-500 text-xs sm:text-sm">
+            <p>&copy; 2023 PROJECT MOM. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Producto -->
+    <div id="productModalOverlay" class="product-modal-overlay">
+        <div id="productModalContent" class="product-modal-content">
+            <button id="closeModalBtn" class="modal-close-button">&times;</button>
+            <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full">
+                <div class="sm:w-1/2 flex justify-center">
+                    <img id="modalProductImage" src="" alt="Producto en Modal" class="w-full max-w-[250px] h-auto rounded-lg shadow-md object-cover">
+                </div>
+                <div class="sm:w-1/2 text-center sm:text-left">
+                    <h2 id="modalProductName" class="text-2xl font-bold text-gray-900 mb-2"></h2>
+                    <p id="modalProductPrice" class="text-xl font-bold text-purple-600 mb-3"></p>
+                    <p id="modalProductDescription" class="text-gray-700 text-sm leading-relaxed mb-4"></p>
+                    <a id="modalBuyNowBtn" href="#" target="_blank" class="inline-block w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 no-underline text-base">
+                        Comprar Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lógica para la animación de entrada al cargar la página
+            document.body.classList.add('fadeIn');
+
+            // DECLARACIONES DE ELEMENTOS DOM RELACIONADOS CON LAS MODALES
+            const productModalOverlay = document.getElementById('productModalOverlay');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalProductImage = document.getElementById('modalProductImage');
+            const modalProductName = document.getElementById('modalProductName');
+            const modalProductPrice = document.getElementById('modalProductPrice');
+            const modalProductDescription = document.getElementById('modalProductDescription');
+            const modalBuyNowBtn = document.getElementById('modalBuyNowBtn');
+
+            // Datos de los productos de la categoría Niños
+            const kidsProductDetails = {
+                "kidsProduct1": {
+                    name: "Juguete Educativo",
+                    price: 25.00,
+                    description: "Un juguete divertido que estimula el aprendizaje y la creatividad en los niños pequeños. Fabricado con materiales seguros y duraderos.",
+                    image: "https://placehold.co/400x500/FEE2E2/EF4444?text=Juguete+Educativo"
+                },
+                "kidsProduct2": {
+                    name: "Vestido de Verano",
+                    price: 35.99,
+                    description: "Ideal para días soleados, este vestido es cómodo, ligero y con un diseño alegre que encantará a tu pequeña. Hecho con tela suave y transpirable.",
+                    image: "https://placehold.co/400x500/DBEAFE/3B82F6?text=Vestido+Ni%C3%B1a"
+                },
+                "kidsProduct3": {
+                    name: "Zapatos Deportivos",
+                    price: 49.50,
+                    description: "Zapatillas resistentes y cómodas, perfectas para todas las aventuras de tus hijos. Ofrecen buen soporte y durabilidad para el uso diario.",
+                    image: "https://placehold.co/400x500/D1FAE5/10B981?text=Zapatos+Deportivos"
+                },
+                "kidsProduct4": {
+                    name: "Libro de Cuentos",
+                    price: 18.75,
+                    description: "Una colección de historias mágicas y coloridas que despertarán la imaginación de los niños y fomentarán el amor por la lectura.",
+                    image: "https://placehold.co/400x500/F0F8FF/4682B4?text=Libro+Cuentos"
+                },
+                "kidsProduct5": {
+                    name: "Mochila Escolar",
+                    price: 40.00,
+                    description: "Mochila resistente y colorida con compartimentos amplios, perfecta para llevar los útiles escolares y juguetes. Diseño ergonómico para mayor comodidad.",
+                    image: "https://placehold.co/400x500/FFF0F5/FF69B4?text=Mochila+Escolar"
+                },
+                "kidsProduct6": {
+                    name: "Set de Dibujo Creativo",
+                    price: 22.50,
+                    description: "Un completo set con crayones, lápices de colores y un cuaderno, ideal para que los pequeños artistas desarrollen su creatividad.",
+                    image: "https://placehold.co/400x500/E0FFFF/00CED1?text=Set+Dibujo"
+                }
+            };
+
+            // FUNCIONES DE MODAL
+            function openProductModal(productDetails) {
+                modalProductImage.src = productDetails.image;
+                modalProductImage.alt = productDetails.name;
+                modalProductName.textContent = productDetails.name;
+                modalProductPrice.textContent = `$${productDetails.price.toFixed(2)}`;
+                modalProductDescription.textContent = productDetails.description;
+
+                const whatsappNumber = '573024640777';
+                const message = `¡Hola! Me gustaría comprar el "${productDetails.name}" por $${productDetails.price.toFixed(2)}.`;
+                modalBuyNowBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                productModalOverlay.classList.add('open');
+            }
+
+            function closeProductModal() {
+                productModalOverlay.classList.remove('open');
+            }
+
+            // Asignar listeners a cada producto de la sección "Productos para Niños"
+            const kidsProductLinks = document.querySelectorAll('.grid > div[id^="kidsProduct"]');
+            kidsProductLinks.forEach(productDiv => {
+                productDiv.addEventListener('click', () => {
+                    const productId = productDiv.id;
+                    if (kidsProductDetails[productId]) {
+                        openProductModal(kidsProductDetails[productId]);
+                    }
+                });
+            });
+
+            // Listener para cerrar la modal de producto al hacer clic en la "X" o fuera de ella
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeProductModal);
+            }
+            if (productModalOverlay) {
+                productModalOverlay.addEventListener('click', function(event) {
+                    if (event.target === productModalOverlay) {
+                        closeProductModal();
+                    }
+                });
+            }
+
+            // Lógica para la animación de salida al hacer clic en enlaces
+            const allNavLinks = document.querySelectorAll('a');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    if (this.href && this.href !== window.location.href + '#') {
+                        event.preventDefault();
+                        document.body.classList.add('fadeOut');
+                        const targetUrl = this.href;
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 500);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
